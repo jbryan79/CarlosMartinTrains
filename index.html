@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Carlos Martin</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --amber: #c8763a;
+    --terra: #a0522d;
+    --cream: #f5f0e6;
+    --warm-white: #fdfaf4;
+    --deep: #1c1208;
+    --mid: #3a2a14;
+    --muted: #7a6a50;
+    --light: #e8dcc8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--warm-white);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: rgba(28,18,8,0.90);
+    backdrop-filter: blur(8px);
+  }
+  nav .logo {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--amber); letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul li a {
+    color: var(--cream); text-decoration: none;
+    font-size: 0.85rem; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 700;
+    transition: color 0.2s;
+  }
+  nav ul li a:hover { color: var(--amber); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--deep);
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 4rem 5rem;
+    z-index: 2;
+  }
+
+  .tagline {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.8rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--amber);
+    margin-bottom: 1.5rem;
+  }
+
+  .acronym {
+    display: flex; flex-direction: column; gap: 0.6rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .acronym-row {
+    display: flex; align-items: baseline; gap: 0.8rem;
+  }
+
+  .acronym-letter {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3.5rem; font-weight: 700;
+    color: var(--amber); line-height: 1;
+    min-width: 2.5rem;
+  }
+
+  .acronym-word {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.15rem; font-weight: 400;
+    color: var(--cream); letter-spacing: 0.12em;
+    text-transform: uppercase; opacity: 0.85;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.9rem 2.2rem;
+    background: var(--amber);
+    color: var(--deep);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    align-self: flex-start;
+  }
+  .hero-cta:hover { background: var(--terra); color: var(--cream); transform: translateY(-2px); }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+  }
+  .hero-right img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    filter: brightness(0.88) contrast(1.1);
+  }
+  .hero-right::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, var(--deep) 0%, transparent 35%);
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 5px;
+    background: linear-gradient(to right, var(--amber), var(--terra), var(--amber));
+  }
+
+  /* ABOUT */
+  #about {
+    background: var(--cream);
+    padding: 6rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--amber);
+    font-weight: 700; margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.8rem; font-weight: 700;
+    color: var(--mid); line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: var(--mid); margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+
+  .about-text p strong { font-weight: 700; color: var(--terra); }
+
+  .about-photo {
+    position: relative;
+  }
+  .about-photo img {
+    width: 100%; border-radius: 2px;
+    box-shadow: 12px 12px 0 var(--amber);
+    filter: brightness(0.95) contrast(1.05);
+  }
+  .about-badge {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    background: var(--deep);
+    color: var(--amber);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    box-shadow: 4px 4px 0 var(--terra);
+  }
+
+  /* PHILOSOPHY BANNER */
+  #philosophy {
+    background: var(--mid);
+    padding: 4rem 5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .phil-item {
+    padding: 1.5rem;
+    border-top: 3px solid var(--amber);
+  }
+
+  .phil-number {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem; font-weight: 700;
+    color: var(--amber); line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .phil-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    color: var(--cream); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+
+  .phil-desc {
+    font-size: 0.9rem; line-height: 1.6;
+    color: var(--light); font-weight: 300;
+  }
+
+  /* SKILLS */
+  #skills {
+    background: var(--deep);
+    padding: 6rem 5rem;
+  }
+
+  #skills .section-header {
+    text-align: center; margin-bottom: 4rem;
+  }
+  #skills .section-title { color: var(--cream); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .skill-card {
+    background: var(--mid);
+    padding: 2.5rem 2rem;
+    border-top: 4px solid var(--amber);
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .skill-card:hover { transform: translateY(-6px); border-color: var(--terra); }
+
+  .skill-icon {
+    font-size: 2.2rem; margin-bottom: 1rem;
+  }
+
+  .skill-card h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--amber); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 0.75rem;
+  }
+
+  .skill-card p {
+    font-size: 0.95rem; line-height: 1.7;
+    color: var(--light); font-weight: 300;
+  }
+
+  /* CONTACT */
+  #contact {
+    background: var(--cream);
+    padding: 6rem 5rem;
+    text-align: center;
+  }
+
+  #contact .section-title { color: var(--mid); margin-bottom: 1rem; }
+
+  #contact p {
+    font-size: 1.05rem; color: var(--muted);
+    margin-bottom: 3rem; font-weight: 300;
+  }
+
+  .contact-links {
+    display: flex; justify-content: center; gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 2rem;
+    background: var(--deep);
+    color: var(--cream);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .contact-link:hover { background: var(--amber); color: var(--deep); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep);
+    padding: 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem; letter-spacing: 0.1em;
+  }
+  footer span { color: var(--amber); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 8rem 2rem 3rem; }
+    .hero-right { height: 70vw; }
+    .hero-right::after { background: linear-gradient(to bottom, var(--deep) 0%, transparent 30%); }
+    #about { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+    .about-badge { bottom: -1rem; right: -0.5rem; }
+    #philosophy { grid-template-columns: 1fr; padding: 3rem 2rem; }
+    #skills { padding: 4rem 2rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    #contact { padding: 4rem 2rem; }
+    nav ul { gap: 1rem; }
+    nav { padding: 1rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Carlos Martin</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Coaching</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="tagline">Athlete · Coach · Trainer</p>
+    <div class="acronym">
+      <div class="acronym-row"><span class="acronym-letter">C</span><span class="acronym-word">Committed</span></div>
+      <div class="acronym-row"><span class="acronym-letter">A</span><span class="acronym-word">Athlete</span></div>
+      <div class="acronym-row"><span class="acronym-letter">R</span><span class="acronym-word">Results-Driven</span></div>
+      <div class="acronym-row"><span class="acronym-letter">L</span><span class="acronym-word">Limitless</span></div>
+      <div class="acronym-row"><span class="acronym-letter">O</span><span class="acronym-word">Old-School</span></div>
+      <div class="acronym-row"><span class="acronym-letter">S</span><span class="acronym-word">Strong</span></div>
+    </div>
+    <a href="#about" class="hero-cta">My Story</a>
+  </div>
+  <div class="hero-right">
+    <img src="carlos-hero.png" alt="Carlos Martin"/>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-photo">
+    <img src="carlos-about.jpg" alt="Carlos Martin"/>
+    <div class="about-badge">6 Years · No Shortcuts · Results</div>
+  </div>
+  <div class="about-text">
+    <p class="section-label">Who I Am</p>
+    <h2 class="section-title">Built From the Ground Up</h2>
+    <p>My story didn't start in a gym — it started with a <strong>C2 vertebra fracture</strong> and a recovery that tested everything I had. When the doctors cleared me, I made a decision. I wasn't going back to where I was. I was going further.</p>
+    <p>Six years of <strong>unbroken commitment</strong> later, I've learned what real training looks like. Not the 30-minute shortcuts. Not the trendy programs. Real sessions — two hours or more — built around compound movements, heavy weights, and old-school fundamentals that have worked for decades.</p>
+    <p>My approach is simple: <strong>train hard, train natural, train smart.</strong> No pharmaceuticals. No gimmicks. Just the science of breaking muscle down and letting it rebuild stronger — and the discipline to keep showing up until it does.</p>
+    <p>I coach people the way I wish someone coached me — with <strong>encouragement, proper form, and a real understanding</strong> of how your specific body responds. Because what works for someone else may not work for you, and finding that out together is part of the process.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PHILOSOPHY NUMBERS -->
+<section id="philosophy">
+  <div class="phil-item">
+    <div class="phil-number">6</div>
+    <div class="phil-label">Years of Commitment</div>
+    <div class="phil-desc">Consistency built over six years — through injury, recovery, and every plateau in between.</div>
+  </div>
+  <div class="phil-item">
+    <div class="phil-number">2+</div>
+    <div class="phil-label">Hours Per Session</div>
+    <div class="phil-desc">Real muscle growth takes real time. No quick fixes — just deliberate, purposeful work every session.</div>
+  </div>
+  <div class="phil-item">
+    <div class="phil-number">100%</div>
+    <div class="phil-label">Natural</div>
+    <div class="phil-desc">No enhancements. No shortcuts. The sustainable path — always natural, always honest.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <p class="section-label">What I Bring</p>
+    <h2 class="section-title">Coaching & Training</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">🏋️</div>
+      <h3>Old-School Strength</h3>
+      <p>Compound movements. Heavy weights. Fundamentals that have outlasted every fitness trend. Programs built to produce real, lasting muscle — not just fatigue.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🧠</div>
+      <h3>Mental Toughness</h3>
+      <p>The mind gives out before the body does. I train the mental game — the discipline to show up, push through, and stay the course when it gets hard.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔬</div>
+      <h3>Individual Programming</h3>
+      <p>Your body is not someone else's body. I dial in nutrition and training to how YOU specifically respond — carbs, fats, recovery — all dialed to your biology.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔥</div>
+      <h3>Injury Recovery</h3>
+      <p>I've come back from a C2 vertebra fracture. I understand the patience, the fear, and the work it takes to rebuild. I coach from lived experience, not just theory.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🤝</div>
+      <h3>Mentorship & Form</h3>
+      <p>Positive reinforcement. Proper technique. I build people up while building their foundation — because good form is what keeps you training for decades.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🌿</div>
+      <h3>Natural Lifting</h3>
+      <p>No pharmaceuticals. No performance enhancers. The sustainable path to strength — built on patience, consistency, and doing it the right way.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRICING -->
+<section id="pricing" style="background: var(--cream); padding: 6rem 5rem; text-align: center;">
+  <p class="section-label">Training Rates</p>
+  <h2 class="section-title" style="color: var(--mid); margin-bottom: 3rem;">Simple. Transparent. Worth It.</h2>
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 900px; margin: 0 auto;">
+
+    <!-- Standard Rate -->
+    <div style="background: var(--deep); padding: 2.5rem 2rem; border-top: 4px solid var(--amber); text-align: left;">
+      <p style="font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.75rem;">Standard Rate</p>
+      <div style="font-family: 'Oswald', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--cream); line-height: 1;">$45<span style="font-size: 1.2rem; font-weight: 400; color: var(--muted);">/hr</span></div>
+      <p style="font-size: 0.95rem; color: var(--light); font-weight: 300; margin-top: 1rem; line-height: 1.6;">Hourly sessions with overtime — Carlos stays until the job is done. No clock-watching.</p>
+    </div>
+
+    <!-- Package 1 -->
+    <div style="background: var(--mid); padding: 2.5rem 2rem; border-top: 4px solid var(--terra); text-align: left; position: relative;">
+      <p style="font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.75rem;">Package 1</p>
+      <div style="font-family: 'Oswald', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--cream); line-height: 1;">$40<span style="font-size: 1.2rem; font-weight: 400; color: var(--muted);">/session</span></div>
+      <p style="font-size: 0.95rem; color: var(--light); font-weight: 300; margin-top: 1rem; line-height: 1.6;">12 sessions — paid in full at the start. Lock in your commitment and save.</p>
+      <div style="margin-top: 1.5rem; padding: 0.6rem 1.2rem; background: var(--amber); display: inline-block; font-family: 'Oswald', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--deep);">Best Value</div>
+    </div>
+
+    <!-- Package 2 -->
+    <div style="background: var(--mid); padding: 2.5rem 2rem; border-top: 4px solid var(--amber); text-align: left; position: relative;">
+      <p style="font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.75rem;">Package 2</p>
+      <div style="font-family: 'Oswald', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--cream); line-height: 1;">$35<span style="font-size: 1.2rem; font-weight: 400; color: var(--muted);">/session</span></div>
+      <p style="font-size: 0.85rem; color: var(--amber); font-weight: 700; margin-top: 0.4rem; letter-spacing: 0.05em;">20 sessions — $700 total</p>
+      <p style="font-size: 0.95rem; color: var(--light); font-weight: 300; margin-top: 0.75rem; line-height: 1.6;">Paid in full at the start. Lock in your commitment and save.</p>
+    </div>
+
+    <!-- Yearly & Group -->
+    <div style="background: var(--deep); padding: 2.5rem 2rem; border-top: 4px solid var(--terra); text-align: left;">
+      <p style="font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.75rem;">Yearly & Group Rates</p>
+      <div style="font-family: 'Oswald', sans-serif; font-size: 2rem; font-weight: 700; color: var(--cream); line-height: 1.2; margin-bottom: 1rem;">Let's Talk</div>
+      <p style="font-size: 0.95rem; color: var(--light); font-weight: 300; line-height: 1.6;">Annual programs and group training rates available. Call to discuss what works for your team or long-term goals.</p>
+      <a href="tel:" style="display: inline-block; margin-top: 1.5rem; padding: 0.7rem 1.5rem; background: var(--amber); font-family: 'Oswald', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--deep); text-decoration: none;">📞 Please Call</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Get In Touch</p>
+  <h2 class="section-title">Ready to Do the Work?</h2>
+  <p>If you're serious about training — not looking for a shortcut, but ready to put in the real work — fill out the form below. Carlos will get back to you directly.</p>
+
+  <div style="max-width: 680px; margin: 0 auto 3rem;">
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field"
+      style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;">
+      <input type="hidden" name="form-name" value="contact"/>
+      <p style="display:none;"><input name="bot-field"/></p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+        <div>
+          <label style="display:block; font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.4rem;">Name *</label>
+          <input type="text" name="name" required placeholder="Your name"
+            style="width:100%; padding: 0.85rem 1rem; background: var(--deep); border: 1px solid var(--mid); color: var(--cream); font-family: 'Lato', sans-serif; font-size: 0.95rem; outline: none;"
+            onfocus="this.style.borderColor='#c8763a'" onblur="this.style.borderColor='#3a2a14'"/>
+        </div>
+        <div>
+          <label style="display:block; font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.4rem;">Email *</label>
+          <input type="email" name="email" required placeholder="your@email.com"
+            style="width:100%; padding: 0.85rem 1rem; background: var(--deep); border: 1px solid var(--mid); color: var(--cream); font-family: 'Lato', sans-serif; font-size: 0.95rem; outline: none;"
+            onfocus="this.style.borderColor='#c8763a'" onblur="this.style.borderColor='#3a2a14'"/>
+        </div>
+      </div>
+
+      <div>
+        <label style="display:block; font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.4rem;">Phone</label>
+        <input type="tel" name="phone" placeholder="(optional)"
+          style="width:100%; padding: 0.85rem 1rem; background: var(--deep); border: 1px solid var(--mid); color: var(--cream); font-family: 'Lato', sans-serif; font-size: 0.95rem; outline: none;"
+          onfocus="this.style.borderColor='#c8763a'" onblur="this.style.borderColor='#3a2a14'"/>
+      </div>
+
+      <div>
+        <label style="display:block; font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.4rem;">I'm Interested In</label>
+        <select name="interest"
+          style="width:100%; padding: 0.85rem 1rem; background: var(--deep); border: 1px solid var(--mid); color: var(--cream); font-family: 'Lato', sans-serif; font-size: 0.95rem; outline: none; appearance: none; cursor: pointer;"
+          onfocus="this.style.borderColor='#c8763a'" onblur="this.style.borderColor='#3a2a14'">
+          <option value="">Select a package...</option>
+          <option value="Standard - $45/hr">Standard Rate — $45/hr</option>
+          <option value="Package 1 - 12 sessions $40/ea">Package 1 — 12 sessions @ $40</option>
+          <option value="Package 2 - 20 sessions $35/ea">Package 2 — 20 sessions @ $35</option>
+          <option value="Yearly Rate">Yearly Rate</option>
+          <option value="Group Training">Group Training</option>
+          <option value="General Inquiry">General Inquiry</option>
+        </select>
+      </div>
+
+      <div>
+        <label style="display:block; font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.4rem;">Message</label>
+        <textarea name="message" rows="4" placeholder="Tell Carlos about your goals..."
+          style="width:100%; padding: 0.85rem 1rem; background: var(--deep); border: 1px solid var(--mid); color: var(--cream); font-family: 'Lato', sans-serif; font-size: 0.95rem; outline: none; resize: vertical;"
+          onfocus="this.style.borderColor='#c8763a'" onblur="this.style.borderColor='#3a2a14'"></textarea>
+      </div>
+
+      <button type="submit"
+        style="padding: 1rem 2.5rem; background: var(--amber); color: var(--deep); font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; border: none; cursor: pointer; align-self: flex-start; transition: background 0.2s, transform 0.2s;"
+        onmouseover="this.style.background='#a0522d'; this.style.transform='translateY(-2px)'"
+        onmouseout="this.style.background='#c8763a'; this.style.transform='translateY(0)'">
+        Send Message
+      </button>
+    </form>
+  </div>
+
+  <div class="contact-links">
+    <a href="mailto:carlos_martin21@yahoo.com" class="contact-link">📧 Email Me</a>
+    <a href="https://instagram.com/carlosmartin2136" target="_blank" class="contact-link">📸 Instagram</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 <a href="https://jabsystems.io" target="_blank" style="color: var(--amber); text-decoration: none;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">JAB Systems</a>. All rights reserved. &nbsp;&middot;&nbsp; Like this website? <a href="https://jabsystems.io" target="_blank" style="color: var(--amber); text-decoration: none;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">jabsystems.io</a> can create yours.</p>
+</footer>
+
+</body>
+</html>
