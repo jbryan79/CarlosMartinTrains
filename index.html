@@ -182,6 +182,70 @@
     box-shadow: 4px 4px 0 var(--terra);
   }
 
+  /* COMEBACK STORY */
+  #comeback {
+    background: var(--deep);
+    padding: 6rem 5rem;
+  }
+
+  .comeback-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .comeback-text p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: var(--light); margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+
+  .comeback-text p strong { font-weight: 700; color: var(--amber); }
+
+  .comeback-text .section-title { color: var(--cream); }
+
+  .comeback-photo {
+    position: relative;
+  }
+  .comeback-photo img {
+    width: 100%; border-radius: 2px;
+    box-shadow: -12px 12px 0 var(--terra);
+    filter: brightness(0.9) contrast(1.05);
+  }
+  .comeback-caption {
+    position: absolute; bottom: -1.5rem; left: -1.5rem;
+    background: var(--amber);
+    color: var(--deep);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    box-shadow: 4px 4px 0 var(--mid);
+  }
+
+  /* QUOTE */
+  .quote-block {
+    background: var(--mid);
+    padding: 4rem 5rem;
+    text-align: center;
+  }
+  .quote-block blockquote {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem; font-weight: 400;
+    color: var(--cream); line-height: 1.4;
+    max-width: 800px; margin: 0 auto;
+    font-style: italic;
+  }
+  .quote-block .quote-attr {
+    margin-top: 1.5rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.85rem;
+    color: var(--amber);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
   /* PHILOSOPHY BANNER */
   #philosophy {
     background: var(--mid);
@@ -307,6 +371,12 @@
     .hero-right::after { background: linear-gradient(to bottom, var(--deep) 0%, transparent 30%); }
     #about { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
     .about-badge { bottom: -1rem; right: -0.5rem; }
+    #comeback { padding: 4rem 2rem; }
+    .comeback-grid { grid-template-columns: 1fr; }
+    .comeback-photo { order: -1; }
+    .comeback-caption { left: auto; right: -0.5rem; bottom: -1rem; }
+    .quote-block { padding: 3rem 2rem; }
+    .quote-block blockquote { font-size: 1.3rem; }
     #philosophy { grid-template-columns: 1fr; padding: 3rem 2rem; }
     #skills { padding: 4rem 2rem; }
     .skills-grid { grid-template-columns: 1fr; }
@@ -323,6 +393,7 @@
   <div class="logo">Carlos Martin</div>
   <ul>
     <li><a href="#about">About</a></li>
+    <li><a href="#comeback">My Story</a></li>
     <li><a href="#skills">Coaching</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -364,6 +435,32 @@
     <p>I coach people the way I wish someone coached me — with <strong>encouragement, proper form, and a real understanding</strong> of how your specific body responds. Because what works for someone else may not work for you, and finding that out together is part of the process.</p>
   </div>
 </section>
+
+<div class="divider"></div>
+
+<!-- COMEBACK STORY -->
+<section id="comeback">
+  <div class="comeback-grid">
+    <div class="comeback-text">
+      <p class="section-label">The Comeback</p>
+      <h2 class="section-title">Three Days in a Coma.<br/>Back Under the Bar.</h2>
+      <p>I fell from a forklift and <strong>fractured my C2 vertebra</strong> &mdash; the bone right next to my carotid artery. The doctors said if it had broken all the way through, I would have bled out. No one would have known in time.</p>
+      <p>I was in a <strong>coma for weeks.</strong> When I finally woke up, I was in a hospital bed with tubes and a ventilator, my brother Joe at my side. I spent even more time in a neck brace, unable to do the one thing that kept me sane.</p>
+      <p>But even in recovery, I stayed disciplined. I ate clean. I did what I could. And the moment I was cleared, <strong>I was back under the bar.</strong> Because once this lifestyle gets in your blood, you don't quit. You adapt, you fight, and you come back stronger.</p>
+      <p>That experience didn't break me &mdash; it <strong>proved what I already knew:</strong> the gym isn't just about building muscle. It's about building the kind of person who refuses to stay down.</p>
+    </div>
+    <div class="comeback-photo">
+      <img src="hospital.jpg" alt="Carlos in the hospital after his C2 fracture — his brother Joe at his side"/>
+      <div class="comeback-caption">The fight back starts here</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-block">
+  <blockquote>&ldquo;I just love lifting weights. It&rsquo;s my therapy. When I hit the weights, it&rsquo;s all about therapy.&rdquo;</blockquote>
+  <p class="quote-attr">&mdash; Carlos Martin</p>
+</div>
 
 <div class="divider"></div>
 
