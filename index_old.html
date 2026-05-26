@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Carlos Martin — Personal Training & Coaching. Old-school strength training, injury recovery, and individualized programming. 100% honest, clean diet, hard work."/>
+<meta property="og:title" content="Carlos Martin | Personal Training & Coaching"/>
+<meta property="og:description" content="Old-school strength training, injury recovery, and individualized programming. 100% honest, clean diet, hard work."/>
+<meta property="og:type" content="website"/>
+<title>Carlos Martin | Personal Training & Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --amber: #c8763a;
+    --terra: #a0522d;
+    --cream: #f5f0e6;
+    --warm-white: #fdfaf4;
+    --deep: #1c1208;
+    --mid: #3a2a14;
+    --muted: #7a6a50;
+    --light: #e8dcc8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--warm-white);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: rgba(28,18,8,0.90);
+    backdrop-filter: blur(8px);
+  }
+  nav .logo {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--amber); letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul li a {
+    color: var(--cream); text-decoration: none;
+    font-size: 0.85rem; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 700;
+    transition: color 0.2s;
+  }
+  nav ul li a:hover { color: var(--amber); }
+
+  .nav-toggle { display: none; }
+  .nav-toggle-label {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .nav-toggle-label span {
+    display: block;
+    width: 25px; height: 2px;
+    background: var(--cream);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--deep);
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 4rem 5rem;
+    z-index: 2;
+  }
+
+  .tagline {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.8rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--amber);
+    margin-bottom: 1.5rem;
+  }
+
+  .acronym {
+    display: flex; flex-direction: column; gap: 0.6rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .acronym-row {
+    display: flex; align-items: baseline; gap: 0.8rem;
+  }
+
+  .acronym-letter {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3.5rem; font-weight: 700;
+    color: var(--amber); line-height: 1;
+    min-width: 2.5rem;
+  }
+
+  .acronym-word {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.15rem; font-weight: 400;
+    color: var(--cream); letter-spacing: 0.12em;
+    text-transform: uppercase; opacity: 0.85;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.9rem 2.2rem;
+    background: var(--amber);
+    color: var(--deep);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    align-self: flex-start;
+  }
+  .hero-cta:hover { background: var(--terra); color: var(--cream); transform: translateY(-2px); }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+  }
+  .hero-right img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    filter: brightness(0.88) contrast(1.1);
+  }
+  .hero-right::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, var(--deep) 0%, transparent 35%);
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 5px;
+    background: linear-gradient(to right, var(--amber), var(--terra), var(--amber));
+  }
+
+  /* ABOUT */
+  #about {
+    background: var(--cream);
+    padding: 6rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--amber);
+    font-weight: 700; margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.8rem; font-weight: 700;
+    color: var(--mid); line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: var(--mid); margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+
+  .about-text p strong { font-weight: 700; color: var(--terra); }
+
+  .about-photo {
+    position: relative;
+  }
+  .about-photo img {
+    width: 100%; height: auto; border-radius: 2px;
+    box-shadow: 12px 12px 0 var(--amber);
+    filter: brightness(0.95) contrast(1.05);
+  }
+  .about-badge {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    background: var(--deep);
+    color: var(--amber);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    box-shadow: 4px 4px 0 var(--terra);
+  }
+
+  /* COMEBACK STORY */
+  #comeback {
+    background: var(--deep);
+    padding: 6rem 5rem;
+  }
+
+  .comeback-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .comeback-text p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: var(--light); margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+
+  .comeback-text p strong { font-weight: 700; color: var(--amber); }
+
+  .comeback-text .section-title { color: var(--cream); }
+
+  .comeback-photo {
+    position: relative;
+  }
+  .comeback-photo img {
+    width: 100%; height: auto; border-radius: 2px;
+    box-shadow: -12px 12px 0 var(--terra);
+    filter: brightness(0.9) contrast(1.05);
+  }
+  .comeback-caption {
+    position: absolute; bottom: -1.5rem; left: -1.5rem;
+    background: var(--amber);
+    color: var(--deep);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    box-shadow: 4px 4px 0 var(--mid);
+  }
+
+  /* QUOTE */
+  .quote-block {
+    background: var(--mid);
+    padding: 4rem 5rem;
+    text-align: center;
+  }
+  .quote-block blockquote {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem; font-weight: 400;
+    color: var(--cream); line-height: 1.4;
+    max-width: 800px; margin: 0 auto;
+    font-style: italic;
+  }
+  .quote-block .quote-attr {
+    margin-top: 1.5rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.85rem;
+    color: var(--amber);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* PHILOSOPHY BANNER */
+  #philosophy {
+    background: var(--mid);
+    padding: 4rem 5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .phil-item {
+    padding: 1.5rem;
+    border-top: 3px solid var(--amber);
+  }
+
+  .phil-number {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem; font-weight: 700;
+    color: var(--amber); line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .phil-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    color: var(--cream); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+
+  .phil-desc {
+    font-size: 0.9rem; line-height: 1.6;
+    color: var(--light); font-weight: 300;
+  }
+
+  /* SKILLS */
+  #skills {
+    background: var(--deep);
+    padding: 6rem 5rem;
+  }
+
+  #skills .section-header {
+    text-align: center; margin-bottom: 4rem;
+  }
+  #skills .section-title { color: var(--cream); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .skill-card {
+    background: var(--mid);
+    padding: 2.5rem 2rem;
+    border-top: 4px solid var(--amber);
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .skill-card:hover { transform: translateY(-6px); border-color: var(--terra); }
+
+  .skill-icon {
+    font-size: 2.2rem; margin-bottom: 1rem;
+  }
+
+  .skill-card h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--amber); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 0.75rem;
+  }
+
+  .skill-card p {
+    font-size: 0.95rem; line-height: 1.7;
+    color: var(--light); font-weight: 300;
+  }
+
+  /* PRICING */
+  #pricing {
+    background: var(--cream);
+    padding: 6rem 5rem;
+    text-align: center;
+  }
+
+  #pricing .section-title {
+    color: var(--mid);
+    margin-bottom: 3rem;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .price-card {
+    padding: 2.5rem 2rem;
+    border-top: 4px solid var(--amber);
+    text-align: left;
+  }
+
+  .price-card--dark { background: var(--deep); }
+  .price-card--mid { background: var(--mid); }
+  .price-card--terra { border-top-color: var(--terra); }
+
+  .price-card__label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 0.75rem;
+  }
+
+  .price-card__price {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1;
+  }
+
+  .price-card__unit {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .price-card__title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .price-card__detail {
+    font-size: 0.85rem;
+    color: var(--amber);
+    font-weight: 700;
+    margin-top: 0.4rem;
+    letter-spacing: 0.05em;
+  }
+
+  .price-card__desc {
+    font-size: 0.95rem;
+    color: var(--light);
+    font-weight: 300;
+    margin-top: 1rem;
+    line-height: 1.6;
+  }
+
+  .price-card__badge {
+    margin-top: 1.5rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--amber);
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--deep);
+  }
+
+  .price-card__cta {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.7rem 1.5rem;
+    background: var(--amber);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--deep);
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .price-card__cta:hover { background: var(--terra); color: var(--cream); transform: translateY(-2px); }
+
+  /* CONTACT */
+  #contact {
+    background: var(--cream);
+    padding: 6rem 5rem;
+    text-align: center;
+  }
+
+  #contact .section-title { color: var(--mid); margin-bottom: 1rem; }
+
+  #contact > p {
+    font-size: 1.05rem; color: var(--muted);
+    margin-bottom: 3rem; font-weight: 300;
+  }
+
+  .contact-form-wrap {
+    max-width: 680px;
+    margin: 0 auto 3rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: left;
+  }
+
+  .contact-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  .contact-form label {
+    display: block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 0.4rem;
+  }
+
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: var(--deep);
+    border: 1px solid var(--mid);
+    color: var(--cream);
+    font-family: 'Lato', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus {
+    border-color: var(--amber);
+  }
+
+  .contact-form select {
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .contact-form textarea {
+    resize: vertical;
+  }
+
+  .contact-form button {
+    padding: 1rem 2.5rem;
+    background: var(--amber);
+    color: var(--deep);
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .contact-form button:hover {
+    background: var(--terra);
+    color: var(--cream);
+    transform: translateY(-2px);
+  }
+
+  .contact-links {
+    display: flex; justify-content: center; gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 2rem;
+    background: var(--deep);
+    color: var(--cream);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .contact-link:hover { background: var(--amber); color: var(--deep); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep);
+    padding: 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem; letter-spacing: 0.1em;
+  }
+  footer span { color: var(--amber); }
+  footer a {
+    color: var(--amber);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  footer a:hover { opacity: 0.75; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nav-toggle-label { display: flex; }
+    nav ul {
+      position: absolute;
+      top: 100%; left: 0; width: 100%;
+      flex-direction: column;
+      background: rgba(28,18,8,0.95);
+      padding: 0; gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .nav-toggle:checked ~ ul {
+      max-height: 300px;
+      padding: 1rem 0;
+    }
+    .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) { opacity: 0; }
+    .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+    nav ul li { text-align: center; }
+    nav ul li a { display: block; padding: 0.75rem 1.5rem; }
+    nav { padding: 1rem 1.5rem; }
+
+    #hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 10rem 2rem 3rem; }
+    .hero-right { height: 100vw; }
+    .hero-right img { object-position: center center; }
+    .hero-right::after { background: linear-gradient(to bottom, var(--deep) 0%, transparent 30%); }
+    #about { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+    .about-badge { bottom: -1rem; right: -0.5rem; }
+    #comeback { padding: 4rem 2rem; }
+    .comeback-grid { grid-template-columns: 1fr; }
+    .comeback-photo { order: -1; }
+    .comeback-caption { left: auto; right: -0.5rem; bottom: -1rem; }
+    .quote-block { padding: 3rem 2rem; }
+    .quote-block blockquote { font-size: 1.3rem; }
+    #philosophy { grid-template-columns: 1fr; padding: 3rem 2rem; }
+    #skills { padding: 4rem 2rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    #pricing { padding: 4rem 2rem; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    #contact { padding: 4rem 2rem; }
+    .contact-form__row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav aria-label="Main navigation">
+  <div class="logo">Carlos Martin</div>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true"/>
+  <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </label>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#comeback">My Story</a></li>
+    <li><a href="#skills">Coaching</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="tagline">Athlete &middot; Coach &middot; Trainer</p>
+    <div class="acronym">
+      <div class="acronym-row"><span class="acronym-letter">C</span><span class="acronym-word">Committed</span></div>
+      <div class="acronym-row"><span class="acronym-letter">A</span><span class="acronym-word">Athlete</span></div>
+      <div class="acronym-row"><span class="acronym-letter">R</span><span class="acronym-word">Results-Driven</span></div>
+      <div class="acronym-row"><span class="acronym-letter">L</span><span class="acronym-word">Limitless</span></div>
+      <div class="acronym-row"><span class="acronym-letter">O</span><span class="acronym-word">Old-School</span></div>
+      <div class="acronym-row"><span class="acronym-letter">S</span><span class="acronym-word">Strong</span></div>
+    </div>
+    <a href="#about" class="hero-cta">My Story</a>
+  </div>
+  <div class="hero-right">
+    <img src="carlos-hero.jpg" alt="Carlos Martin" width="800" height="1000" fetchpriority="high"/>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-photo">
+    <img src="carlos-about.jpg" alt="Carlos Martin" width="600" height="800" loading="lazy"/>
+    <div class="about-badge">6 Years &middot; No Shortcuts &middot; Results</div>
+  </div>
+  <div class="about-text">
+    <p class="section-label">Who I Am</p>
+    <h2 class="section-title">Built From the Ground Up</h2>
+    <p>My story didn't start in a gym &mdash; it started at <strong>rock bottom.</strong> I nearly lost everything, including my life. But when I got a second chance, I made a decision. I wasn't going back to where I was. I was going further.</p>
+    <p>Six years of <strong>unbroken commitment</strong> later, I've learned what real training looks like. Not the 30-minute shortcuts. Not the trendy programs. Real sessions &mdash; two hours or more &mdash; built around compound movements, heavy weights, and old-school fundamentals that have worked for decades.</p>
+    <p>My approach is simple: <strong>100% honest, clean diet, hard work.</strong> No gimmicks. Just the science of breaking muscle down and letting it rebuild stronger &mdash; and the discipline to keep showing up until it does.</p>
+    <p>I coach people the way I wish someone coached me &mdash; with <strong>encouragement, proper form, and a real understanding</strong> of how your specific body responds. Because what works for someone else may not work for you, and finding that out together is part of the process.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMEBACK STORY -->
+<section id="comeback">
+  <div class="comeback-grid">
+    <div class="comeback-text">
+      <p class="section-label">The Comeback</p>
+      <h2 class="section-title">Three Days in a Coma.<br/>Back Under the Bar.</h2>
+      <p>I hit the <strong>darkest point of my life.</strong> I was in a bad place, making choices that nearly killed me. I ended up in the hospital &mdash; <strong>in a coma for three days</strong> &mdash; with a fractured C2 vertebra, the bone right next to my carotid artery. If it had broken all the way through, I would have bled out.</p>
+      <p>When I finally woke up, I was in a hospital bed with tubes and a ventilator, my brother Joe at my side. I spent weeks in a neck brace, unable to do the one thing that kept me sane.</p>
+      <p>But even in recovery, I stayed disciplined. I ate clean. I did what I could. And the moment I was cleared, <strong>I was back under the bar.</strong> Because once this lifestyle gets in your blood, you don't quit. You adapt, you fight, and you come back stronger.</p>
+      <p>That experience didn't break me &mdash; it <strong>proved what I already knew:</strong> the gym isn't just about building muscle. It's about building the kind of person who refuses to stay down.</p>
+    </div>
+    <div class="comeback-photo">
+      <img src="hospital.jpg" alt="Carlos in the hospital — his brother Joe at his side" width="600" height="450" loading="lazy"/>
+      <div class="comeback-caption">The fight back starts here</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-block">
+  <blockquote>&ldquo;I just love lifting weights. It&rsquo;s my therapy. When I hit the weights, it&rsquo;s all about therapy.&rdquo;</blockquote>
+  <p class="quote-attr">&mdash; Carlos Martin</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- PHILOSOPHY NUMBERS -->
+<section id="philosophy">
+  <div class="phil-item">
+    <div class="phil-number">6</div>
+    <div class="phil-label">Years of Commitment</div>
+    <div class="phil-desc">Consistency built over six years &mdash; through injury, recovery, and every plateau in between.</div>
+  </div>
+  <div class="phil-item">
+    <div class="phil-number">2+</div>
+    <div class="phil-label">Hours Per Session</div>
+    <div class="phil-desc">Real muscle growth takes real time. No quick fixes &mdash; just deliberate, purposeful work every session.</div>
+  </div>
+  <div class="phil-item">
+    <div class="phil-number">100%</div>
+    <div class="phil-label">Honest</div>
+    <div class="phil-desc">Clean diet. Hard work. No shortcuts &mdash; just the truth about what it takes to build real strength.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <p class="section-label">What I Bring</p>
+    <h2 class="section-title">Coaching &amp; Training</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">&#127947;&#65039;</div>
+      <h3>Old-School Strength</h3>
+      <p>Compound movements. Heavy weights. Fundamentals that have outlasted every fitness trend. Programs built to produce real, lasting muscle &mdash; not just fatigue.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">&#129504;</div>
+      <h3>Mental Toughness</h3>
+      <p>The mind gives out before the body does. I train the mental game &mdash; the discipline to show up, push through, and stay the course when it gets hard.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">&#128300;</div>
+      <h3>Individual Programming</h3>
+      <p>Your body is not someone else's body. I dial in nutrition and training to how YOU specifically respond &mdash; carbs, fats, recovery &mdash; all dialed to your biology.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">&#128293;</div>
+      <h3>Injury Recovery</h3>
+      <p>I've come back from a C2 vertebra fracture. I understand the patience, the fear, and the work it takes to rebuild. I coach from lived experience, not just theory.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">&#129309;</div>
+      <h3>Mentorship &amp; Form</h3>
+      <p>Positive reinforcement. Proper technique. I build people up while building their foundation &mdash; because good form is what keeps you training for decades.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">&#127807;</div>
+      <h3>Honest Training</h3>
+      <p>No BS. Clean diet, hard work, and honesty about what it takes. The sustainable path to strength &mdash; built on patience, consistency, and keeping it real.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRICING -->
+<section id="pricing">
+  <p class="section-label">Training Rates</p>
+  <h2 class="section-title">Simple. Transparent. Worth It.</h2>
+  <div class="pricing-grid">
+
+    <div class="price-card price-card--dark">
+      <p class="price-card__label">Standard Rate</p>
+      <div class="price-card__price">$45<span class="price-card__unit">/hr</span></div>
+      <p class="price-card__desc">Hourly sessions with overtime &mdash; Carlos stays until the job is done. No clock-watching.</p>
+    </div>
+
+    <div class="price-card price-card--mid price-card--terra">
+      <p class="price-card__label">Package 1</p>
+      <div class="price-card__price">$40<span class="price-card__unit">/session</span></div>
+      <p class="price-card__desc">12 sessions &mdash; paid in full at the start. Lock in your commitment and save.</p>
+      <div class="price-card__badge">Best Value</div>
+    </div>
+
+    <div class="price-card price-card--mid">
+      <p class="price-card__label">Package 2</p>
+      <div class="price-card__price">$35<span class="price-card__unit">/session</span></div>
+      <p class="price-card__detail">20 sessions &mdash; $700 total</p>
+      <p class="price-card__desc">Paid in full at the start. Lock in your commitment and save.</p>
+    </div>
+
+    <div class="price-card price-card--dark price-card--terra">
+      <p class="price-card__label">Yearly &amp; Group Rates</p>
+      <div class="price-card__title">Let's Talk</div>
+      <p class="price-card__desc">Annual programs and group training rates available. Call to discuss what works for your team or long-term goals.</p>
+      <a href="#contact" class="price-card__cta">&#128222; Get in Touch</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Get In Touch</p>
+  <h2 class="section-title">Ready to Do the Work?</h2>
+  <p>If you're serious about training &mdash; not looking for a shortcut, but ready to put in the real work &mdash; fill out the form below. Carlos will get back to you directly.</p>
+
+  <div class="contact-form-wrap">
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+      <input type="hidden" name="form-name" value="contact"/>
+      <p style="display:none;"><input name="bot-field"/></p>
+
+      <div class="contact-form__row">
+        <div>
+          <label for="name">Name *</label>
+          <input type="text" id="name" name="name" required placeholder="Your name"/>
+        </div>
+        <div>
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required placeholder="your@email.com"/>
+        </div>
+      </div>
+
+      <div>
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" placeholder="(optional)"/>
+      </div>
+
+      <div>
+        <label for="interest">I'm Interested In</label>
+        <select id="interest" name="interest">
+          <option value="">Select a package...</option>
+          <option value="Standard - $45/hr">Standard Rate &mdash; $45/hr</option>
+          <option value="Package 1 - 12 sessions $40/ea">Package 1 &mdash; 12 sessions @ $40</option>
+          <option value="Package 2 - 20 sessions $35/ea">Package 2 &mdash; 20 sessions @ $35</option>
+          <option value="Yearly Rate">Yearly Rate</option>
+          <option value="Group Training">Group Training</option>
+          <option value="General Inquiry">General Inquiry</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" placeholder="Tell Carlos about your goals..."></textarea>
+      </div>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+
+  <div class="contact-links">
+    <a href="mailto:carlos_martin21@yahoo.com" class="contact-link">&#128231; Email Me</a>
+    <a href="https://instagram.com/carlosmartin2136" target="_blank" rel="noopener noreferrer" class="contact-link">&#128248; Instagram</a>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 <a href="https://jabsystems.io" target="_blank" rel="noopener noreferrer">JAB Systems</a>. All rights reserved. &nbsp;&middot;&nbsp; Like this website? <a href="https://jabsystems.io" target="_blank" rel="noopener noreferrer">jabsystems.io</a> can create yours.</p>
+</footer>
+
+</body>
+</html>
