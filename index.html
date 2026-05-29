@@ -573,6 +573,215 @@
   }
   footer a:hover { opacity: 0.75; }
 
+  /* SCROLL PROGRESS BAR */
+  .scroll-progress {
+    position: fixed; top: 0; left: 0;
+    height: 3px; width: 0%;
+    background: linear-gradient(to right, var(--amber), var(--terra));
+    z-index: 200;
+    transition: width 0.1s linear;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+
+  /* HERO KEN-BURNS */
+  .hero-right img { animation: kenburns 18s ease-in-out infinite alternate; }
+  @keyframes kenburns {
+    from { transform: scale(1); }
+    to   { transform: scale(1.08); }
+  }
+  .acronym-row { opacity: 0; transform: translateX(-18px); animation: slideInLetter 0.6s ease forwards; }
+  .acronym-row:nth-child(1) { animation-delay: 0.15s; }
+  .acronym-row:nth-child(2) { animation-delay: 0.27s; }
+  .acronym-row:nth-child(3) { animation-delay: 0.39s; }
+  .acronym-row:nth-child(4) { animation-delay: 0.51s; }
+  .acronym-row:nth-child(5) { animation-delay: 0.63s; }
+  .acronym-row:nth-child(6) { animation-delay: 0.75s; }
+  @keyframes slideInLetter {
+    to { opacity: 1; transform: none; }
+  }
+
+  /* IN HIS OWN VOICE — AUDIO STORY CARD */
+  .voice-card {
+    margin-top: 2rem;
+    background: var(--deep);
+    border-top: 4px solid var(--amber);
+    padding: 1.6rem 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    box-shadow: 8px 8px 0 rgba(160,82,45,0.25);
+  }
+  .voice-play {
+    flex-shrink: 0;
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    border: none;
+    background: var(--amber);
+    color: var(--deep);
+    cursor: pointer;
+    display: grid; place-items: center;
+    transition: background 0.2s, transform 0.2s;
+    position: relative;
+  }
+  .voice-play:hover { background: var(--terra); color: var(--cream); transform: scale(1.06); }
+  .voice-play svg { width: 26px; height: 26px; }
+  .voice-play .icon-pause { display: none; }
+  .voice-play.is-playing .icon-play { display: none; }
+  .voice-play.is-playing .icon-pause { display: block; }
+  .voice-play.is-playing::after {
+    content: '';
+    position: absolute; inset: -6px;
+    border-radius: 50%;
+    border: 2px solid var(--amber);
+    animation: pulseRing 1.6s ease-out infinite;
+  }
+  @keyframes pulseRing {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+  .voice-info { flex: 1; min-width: 0; }
+  .voice-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--amber);
+    margin-bottom: 0.25rem;
+  }
+  .voice-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--cream); line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+  .voice-meta {
+    font-size: 0.82rem; color: var(--muted);
+    display: flex; align-items: center; gap: 0.9rem;
+  }
+  .equalizer { display: inline-flex; align-items: flex-end; gap: 3px; height: 16px; }
+  .equalizer span {
+    display: block; width: 3px; height: 4px;
+    background: var(--amber); border-radius: 1px;
+  }
+  .voice-play.is-playing ~ .voice-info .equalizer span,
+  .is-playing-global .equalizer span {
+    animation: eq 0.9s ease-in-out infinite;
+  }
+  .equalizer span:nth-child(2) { animation-delay: 0.15s; }
+  .equalizer span:nth-child(3) { animation-delay: 0.3s; }
+  .equalizer span:nth-child(4) { animation-delay: 0.45s; }
+  .equalizer span:nth-child(5) { animation-delay: 0.6s; }
+  @keyframes eq {
+    0%, 100% { height: 4px; }
+    50% { height: 16px; }
+  }
+
+  /* ON AIR badge on about photo */
+  .about-photo .on-air {
+    position: absolute; top: 1rem; left: 1rem;
+    background: var(--terra);
+    color: var(--cream);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    display: none; align-items: center; gap: 0.5rem;
+    box-shadow: 3px 3px 0 var(--deep);
+  }
+  .about-photo .on-air::before {
+    content: ''; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--cream); animation: blink 1.2s steps(2) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0.2; } }
+  body.is-playing-global .about-photo .on-air { display: inline-flex; }
+  body.is-playing-global .about-photo img { box-shadow: 12px 12px 0 var(--terra); }
+
+  /* FLOATING DOCK PLAYER */
+  .dock {
+    position: fixed; left: 50%; bottom: 1.2rem;
+    transform: translate(-50%, 160%);
+    width: min(680px, calc(100% - 2rem));
+    background: rgba(28,18,8,0.96);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--mid);
+    border-top: 3px solid var(--amber);
+    border-radius: 4px;
+    padding: 0.85rem 1.1rem;
+    display: flex; align-items: center; gap: 1rem;
+    z-index: 150;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .dock.is-open { transform: translate(-50%, 0); }
+  .dock-play {
+    flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%;
+    border: none; background: var(--amber); color: var(--deep);
+    cursor: pointer; display: grid; place-items: center;
+    transition: background 0.2s;
+  }
+  .dock-play:hover { background: var(--terra); color: var(--cream); }
+  .dock-play svg { width: 18px; height: 18px; }
+  .dock-play .icon-pause { display: none; }
+  .dock-play.is-playing .icon-play { display: none; }
+  .dock-play.is-playing .icon-pause { display: block; }
+  .dock-body { flex: 1; min-width: 0; }
+  .dock-titlebar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 0.4rem;
+  }
+  .dock-name {
+    font-family: 'Oswald', sans-serif; font-size: 0.78rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .dock-name span { color: var(--amber); }
+  .dock-time { font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; flex-shrink: 0; padding-left: 0.8rem; }
+  .dock-scrub {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 5px; border-radius: 3px;
+    background: var(--mid); cursor: pointer; outline: none;
+  }
+  .dock-scrub::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--amber); cursor: pointer; border: 2px solid var(--deep);
+  }
+  .dock-scrub::-moz-range-thumb {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--amber); cursor: pointer; border: 2px solid var(--deep);
+  }
+  .dock-close {
+    flex-shrink: 0; background: none; border: none; color: var(--muted);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 0.2rem;
+    transition: color 0.2s;
+  }
+  .dock-close:hover { color: var(--amber); }
+
+  /* ACCESSIBILITY: reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+    .acronym-row { opacity: 1; transform: none; }
+  }
+
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible,
+  select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .nav-toggle-label { display: flex; }
@@ -621,10 +830,19 @@
     .pricing-grid { grid-template-columns: 1fr; }
     #contact { padding: 4rem 2rem; }
     .contact-form__row { grid-template-columns: 1fr; }
+    .voice-card { flex-direction: row; padding: 1.3rem; gap: 1rem; }
+    .voice-play { width: 54px; height: 54px; }
+    .voice-title { font-size: 1.1rem; }
+    .dock { bottom: 0; border-radius: 4px 4px 0 0; padding: 0.7rem 0.9rem; gap: 0.7rem; }
+    .dock.is-open { transform: translate(-50%, 0); }
+    .hero-right img { animation: none; }
   }
 </style>
 </head>
 <body>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
 <!-- NAV -->
 <nav aria-label="Main navigation">
@@ -666,17 +884,34 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-photo">
+  <div class="about-photo reveal">
     <img src="carlos-about.jpg" alt="Carlos Martin" width="600" height="800" loading="lazy"/>
+    <div class="on-air" aria-hidden="true">On Air</div>
     <div class="about-badge">6 Years &middot; No Shortcuts &middot; Results</div>
   </div>
-  <div class="about-text">
+  <div class="about-text reveal">
     <p class="section-label">Who I Am</p>
     <h2 class="section-title">Built From the Ground Up</h2>
     <p>My story didn't start in a gym &mdash; it started at <strong>rock bottom.</strong> I nearly lost everything, including my life. But when I got a second chance, I made a decision. I wasn't going back to where I was. I was going further.</p>
     <p>Six years of <strong>unbroken commitment</strong> later, I've learned what real training looks like. Not the 30-minute shortcuts. Not the trendy programs. Real sessions &mdash; two hours or more &mdash; built around compound movements, heavy weights, and old-school fundamentals that have worked for decades.</p>
     <p>My approach is simple: <strong>100% honest, clean diet, hard work.</strong> No gimmicks. Just the science of breaking muscle down and letting it rebuild stronger &mdash; and the discipline to keep showing up until it does.</p>
     <p>I coach people the way I wish someone coached me &mdash; with <strong>encouragement, proper form, and a real understanding</strong> of how your specific body responds. Because what works for someone else may not work for you, and finding that out together is part of the process.</p>
+
+    <!-- IN HIS OWN VOICE -->
+    <div class="voice-card" id="voice-card">
+      <button class="voice-play" id="voice-play" aria-label="Play Carlos's story" aria-pressed="false">
+        <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      </button>
+      <div class="voice-info">
+        <p class="voice-label">In His Own Voice</p>
+        <p class="voice-title">Listen to Carlos tell his story</p>
+        <p class="voice-meta">
+          <span class="equalizer" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
+          <span>Press play and read along</span>
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -685,7 +920,7 @@
 <!-- COMEBACK STORY -->
 <section id="comeback">
   <div class="comeback-grid">
-    <div class="comeback-text">
+    <div class="comeback-text reveal">
       <p class="section-label">The Comeback</p>
       <h2 class="section-title">Three Days in a Coma.<br/>Back Under the Bar.</h2>
       <p>I hit the <strong>darkest point of my life.</strong> I was in a bad place, making choices that nearly killed me. I ended up in the hospital &mdash; <strong>in a coma for three days</strong> &mdash; with a fractured C2 vertebra, the bone right next to my carotid artery. If it had broken all the way through, I would have bled out.</p>
@@ -693,7 +928,7 @@
       <p>But even in recovery, I stayed disciplined. I ate clean. I did what I could. And the moment I was cleared, <strong>I was back under the bar.</strong> Because once this lifestyle gets in your blood, you don't quit. You adapt, you fight, and you come back stronger.</p>
       <p>That experience didn't break me &mdash; it <strong>proved what I already knew:</strong> the gym isn't just about building muscle. It's about building the kind of person who refuses to stay down.</p>
     </div>
-    <div class="comeback-photo">
+    <div class="comeback-photo reveal">
       <img src="hospital.jpg" alt="Carlos in the hospital — his brother Joe at his side" width="600" height="450" loading="lazy"/>
       <div class="comeback-caption">The fight back starts here</div>
     </div>
@@ -710,18 +945,18 @@
 
 <!-- PHILOSOPHY NUMBERS -->
 <section id="philosophy">
-  <div class="phil-item">
-    <div class="phil-number">6</div>
+  <div class="phil-item reveal">
+    <div class="phil-number" data-count="6">6</div>
     <div class="phil-label">Years of Commitment</div>
     <div class="phil-desc">Consistency built over six years &mdash; through injury, recovery, and every plateau in between.</div>
   </div>
-  <div class="phil-item">
-    <div class="phil-number">2+</div>
+  <div class="phil-item reveal">
+    <div class="phil-number" data-count="2" data-suffix="+">2+</div>
     <div class="phil-label">Hours Per Session</div>
     <div class="phil-desc">Real muscle growth takes real time. No quick fixes &mdash; just deliberate, purposeful work every session.</div>
   </div>
-  <div class="phil-item">
-    <div class="phil-number">100%</div>
+  <div class="phil-item reveal">
+    <div class="phil-number" data-count="100" data-suffix="%">100%</div>
     <div class="phil-label">Honest</div>
     <div class="phil-desc">Clean diet. Hard work. No shortcuts &mdash; just the truth about what it takes to build real strength.</div>
   </div>
@@ -736,32 +971,32 @@
     <h2 class="section-title">Coaching &amp; Training</h2>
   </div>
   <div class="skills-grid">
-    <div class="skill-card">
+    <div class="skill-card reveal">
       <div class="skill-icon">&#127947;&#65039;</div>
       <h3>Old-School Strength</h3>
       <p>Compound movements. Heavy weights. Fundamentals that have outlasted every fitness trend. Programs built to produce real, lasting muscle &mdash; not just fatigue.</p>
     </div>
-    <div class="skill-card">
+    <div class="skill-card reveal">
       <div class="skill-icon">&#129504;</div>
       <h3>Mental Toughness</h3>
       <p>The mind gives out before the body does. I train the mental game &mdash; the discipline to show up, push through, and stay the course when it gets hard.</p>
     </div>
-    <div class="skill-card">
+    <div class="skill-card reveal">
       <div class="skill-icon">&#128300;</div>
       <h3>Individual Programming</h3>
       <p>Your body is not someone else's body. I dial in nutrition and training to how YOU specifically respond &mdash; carbs, fats, recovery &mdash; all dialed to your biology.</p>
     </div>
-    <div class="skill-card">
+    <div class="skill-card reveal">
       <div class="skill-icon">&#128293;</div>
       <h3>Injury Recovery</h3>
       <p>I've come back from a C2 vertebra fracture. I understand the patience, the fear, and the work it takes to rebuild. I coach from lived experience, not just theory.</p>
     </div>
-    <div class="skill-card">
+    <div class="skill-card reveal">
       <div class="skill-icon">&#129309;</div>
       <h3>Mentorship &amp; Form</h3>
       <p>Positive reinforcement. Proper technique. I build people up while building their foundation &mdash; because good form is what keeps you training for decades.</p>
     </div>
-    <div class="skill-card">
+    <div class="skill-card reveal">
       <div class="skill-icon">&#127807;</div>
       <h3>Honest Training</h3>
       <p>No BS. Clean diet, hard work, and honesty about what it takes. The sustainable path to strength &mdash; built on patience, consistency, and keeping it real.</p>
@@ -777,27 +1012,27 @@
   <h2 class="section-title">Simple. Transparent. Worth It.</h2>
   <div class="pricing-grid">
 
-    <div class="price-card price-card--dark">
+    <div class="price-card reveal price-card--dark">
       <p class="price-card__label">Standard Rate</p>
       <div class="price-card__price">$45<span class="price-card__unit">/hr</span></div>
       <p class="price-card__desc">Hourly sessions with overtime &mdash; Carlos stays until the job is done. No clock-watching.</p>
     </div>
 
-    <div class="price-card price-card--mid price-card--terra">
+    <div class="price-card reveal price-card--mid price-card--terra">
       <p class="price-card__label">Package 1</p>
       <div class="price-card__price">$40<span class="price-card__unit">/session</span></div>
       <p class="price-card__desc">12 sessions &mdash; paid in full at the start. Lock in your commitment and save.</p>
       <div class="price-card__badge">Best Value</div>
     </div>
 
-    <div class="price-card price-card--mid">
+    <div class="price-card reveal price-card--mid">
       <p class="price-card__label">Package 2</p>
       <div class="price-card__price">$35<span class="price-card__unit">/session</span></div>
       <p class="price-card__detail">20 sessions &mdash; $700 total</p>
       <p class="price-card__desc">Paid in full at the start. Lock in your commitment and save.</p>
     </div>
 
-    <div class="price-card price-card--dark price-card--terra">
+    <div class="price-card reveal price-card--dark price-card--terra">
       <p class="price-card__label">Yearly &amp; Group Rates</p>
       <div class="price-card__title">Let's Talk</div>
       <p class="price-card__desc">Annual programs and group training rates available. Call to discuss what works for your team or long-term goals.</p>
@@ -864,10 +1099,163 @@
 
 </main>
 
+<!-- FLOATING DOCK PLAYER -->
+<div class="dock" id="dock" role="region" aria-label="Audio player">
+  <button class="dock-play" id="dock-play" aria-label="Play or pause">
+    <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+  </button>
+  <div class="dock-body">
+    <div class="dock-titlebar">
+      <span class="dock-name"><span>Carlos Martin</span> &mdash; In His Own Voice</span>
+      <span class="dock-time" id="dock-time">0:00 / 0:00</span>
+    </div>
+    <input type="range" class="dock-scrub" id="dock-scrub" min="0" max="100" value="0" step="0.1" aria-label="Seek"/>
+  </div>
+  <button class="dock-close" id="dock-close" aria-label="Close player">&times;</button>
+</div>
+
+<audio id="story-audio" preload="metadata" src="carlos-story.mp3"></audio>
+
 <!-- FOOTER -->
 <footer>
   <p>&copy; 2026 <a href="https://jabsystems.io" target="_blank" rel="noopener noreferrer">JAB Systems</a>. All rights reserved. &nbsp;&middot;&nbsp; Like this website? <a href="https://jabsystems.io" target="_blank" rel="noopener noreferrer">jabsystems.io</a> can create yours.</p>
 </footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---- Scroll progress bar ---- */
+  var bar = document.getElementById('scroll-progress');
+  function updateProgress() {
+    var h = document.documentElement;
+    var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+    bar.style.width = (scrolled * 100) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  /* ---- Scroll reveal ---- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var ro = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); ro.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(function (el) { ro.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* ---- Count-up stats ---- */
+  var nums = document.querySelectorAll('.phil-number[data-count]');
+  if ('IntersectionObserver' in window) {
+    var co = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        co.unobserve(el);
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        var suffix = el.getAttribute('data-suffix') || '';
+        var start = null, dur = 1400;
+        function step(ts) {
+          if (start === null) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.5 });
+    nums.forEach(function (n) { co.observe(n); });
+  }
+
+  /* ---- Audio player ---- */
+  var audio = document.getElementById('story-audio');
+  var voicePlay = document.getElementById('voice-play');
+  var voiceCard = document.getElementById('voice-card');
+  var dock = document.getElementById('dock');
+  var dockPlay = document.getElementById('dock-play');
+  var dockClose = document.getElementById('dock-close');
+  var dockTime = document.getElementById('dock-time');
+  var dockScrub = document.getElementById('dock-scrub');
+  var userClosed = false;
+
+  function fmt(t) {
+    if (!isFinite(t)) return '0:00';
+    var m = Math.floor(t / 60);
+    var s = Math.floor(t % 60);
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  function syncPlayingUI(playing) {
+    voicePlay.classList.toggle('is-playing', playing);
+    dockPlay.classList.toggle('is-playing', playing);
+    voicePlay.setAttribute('aria-pressed', playing ? 'true' : 'false');
+    document.body.classList.toggle('is-playing-global', playing);
+    voicePlay.setAttribute('aria-label', playing ? 'Pause Carlos’s story' : 'Play Carlos’s story');
+  }
+
+  function toggle() {
+    if (audio.paused) { audio.play(); } else { audio.pause(); }
+  }
+
+  voicePlay.addEventListener('click', function () {
+    userClosed = false;
+    dock.classList.add('is-open');
+    toggle();
+  });
+  dockPlay.addEventListener('click', toggle);
+
+  dockClose.addEventListener('click', function () {
+    audio.pause();
+    dock.classList.remove('is-open');
+    userClosed = true;
+  });
+
+  audio.addEventListener('play', function () { syncPlayingUI(true); dock.classList.add('is-open'); });
+  audio.addEventListener('pause', function () { syncPlayingUI(false); });
+  audio.addEventListener('ended', function () {
+    syncPlayingUI(false);
+    dockScrub.value = 0;
+    dockTime.textContent = '0:00 / ' + fmt(audio.duration);
+  });
+
+  audio.addEventListener('loadedmetadata', function () {
+    dockTime.textContent = '0:00 / ' + fmt(audio.duration);
+  });
+
+  audio.addEventListener('timeupdate', function () {
+    if (audio.duration) {
+      dockScrub.value = (audio.currentTime / audio.duration) * 100;
+      dockTime.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+    }
+  });
+
+  dockScrub.addEventListener('input', function () {
+    if (audio.duration) audio.currentTime = (dockScrub.value / 100) * audio.duration;
+  });
+
+  /* Reveal the dock once the inline card scrolls away while playing;
+     hide it again when the card is back in view (and not closed). */
+  if ('IntersectionObserver' in window) {
+    var cardObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (userClosed) return;
+        if (!e.isIntersecting && !audio.paused) {
+          dock.classList.add('is-open');
+        } else if (e.isIntersecting && audio.paused) {
+          dock.classList.remove('is-open');
+        }
+      });
+    }, { threshold: 0 });
+    cardObs.observe(voiceCard);
+  }
+})();
+</script>
 
 </body>
 </html>
