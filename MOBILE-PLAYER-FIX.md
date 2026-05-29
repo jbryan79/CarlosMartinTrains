@@ -52,6 +52,15 @@ time while scrolling.
 The inline voice card and the dock share the same `<audio>` element, so the
 play/pause state stays in sync between the two.
 
+## Compact Launcher
+
+The inline launcher (`.voice-card`) was a large dark panel that felt heavy.
+It is now a small, rounded **"Listen" pill** — a round play button plus a short
+"In His Own Voice / Listen to Carlos tell his story" label. The whole pill is
+tappable. The idle equalizer dots are hidden and only animate while the story
+is playing. The persistent sticky top bar continues to handle play/pause during
+scrolling.
+
 ## Testing
 
 Open `index.html`, press play on the inline card, and scroll down. The dock
