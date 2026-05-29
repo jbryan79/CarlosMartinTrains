@@ -25,23 +25,32 @@ is the worst possible spot:
 ## The Fix
 
 Pin the floating dock player to the **top** of the window instead of the
-bottom, so it stays visible and tappable as the visitor scrolls. The dock now
-slides **down** into view (from above) just beneath the fixed navigation bar,
-rather than sliding up from the bottom.
+bottom, and on mobile make it a **persistent sticky bar**: once the visitor
+scrolls past the first picture (the hero), the dock slides down and stays
+pinned at the top of the screen for the rest of the page — visible whether or
+not it is currently playing — so the story can be played or stopped at any
+time while scrolling.
 
-### Changes (`index.html`, CSS only — no markup or JS logic changed)
+### Changes (`index.html`)
 
 - **`.dock`** — anchored to the top: `top` offset below the fixed nav instead
-  of `bottom`; the hidden/off-screen transform now slides the dock up and out
-  of view above the viewport (`translate(-50%, calc(-100% - 6rem))`), and
+  of `bottom`; the hidden/off-screen transform slides the dock up and out of
+  view above the viewport (`translate(-50%, calc(-100% - 6rem))`), and
   `.dock.is-open` brings it down to `translate(-50%, 0)`.
 - **Mobile (`max-width: 900px`)** — the dock sits flush just under the nav with
-  bottom-rounded corners (`border-radius: 0 0 4px 4px`) so it reads as a
-  "now playing" bar pinned to the top of the screen.
+  bottom-rounded corners (`border-radius: 0 0 4px 4px`), reading as a
+  "now playing" bar pinned to the top of the screen. The **close button is
+  hidden on mobile** so the bar stays available the whole time.
+- **JS** — behavior is now split by viewport:
+  - **Desktop**: unchanged — the dock appears once the inline card scrolls out
+    of view while audio is playing, and hides when the card returns or the
+    visitor closes it.
+  - **Mobile**: a hero `IntersectionObserver` opens the dock as soon as the
+    hero scrolls out of view and keeps it open for the rest of the page,
+    independent of play/pause state, so it never disappears mid-scroll.
 
-The reveal logic is unchanged: the dock still appears automatically once the
-inline card scrolls out of view while audio is playing, and hides again when
-the card returns or the visitor closes it.
+The inline voice card and the dock share the same `<audio>` element, so the
+play/pause state stays in sync between the two.
 
 ## Testing
 

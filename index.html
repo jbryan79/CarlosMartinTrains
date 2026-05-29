@@ -894,6 +894,9 @@
     .voice-title { font-size: 1.1rem; }
     .dock { top: 3.9rem; border-radius: 0 0 4px 4px; padding: 0.7rem 0.9rem; gap: 0.7rem; }
     .dock.is-open { transform: translate(-50%, 0); }
+    /* On mobile the dock is a persistent sticky bar — no close button so the
+       story stays playable/stoppable while scrolling. */
+    .dock-close { display: none; }
     .hero-right img { animation: none; }
   }
 </style>
@@ -1304,12 +1307,14 @@
     if (audio.duration) audio.currentTime = (dockScrub.value / 100) * audio.duration;
   });
 
-  /* Reveal the dock once the inline card scrolls away while playing;
-     hide it again when the card is back in view (and not closed). */
+  function isMobile() { return window.matchMedia('(max-width: 900px)').matches; }
+
   if ('IntersectionObserver' in window) {
+    /* DESKTOP: reveal the dock once the inline card scrolls away while playing;
+       hide it again when the card is back in view (and not closed). */
     var cardObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (userClosed) return;
+        if (isMobile() || userClosed) return;
         if (!e.isIntersecting && !audio.paused) {
           dock.classList.add('is-open');
         } else if (e.isIntersecting && audio.paused) {
@@ -1318,6 +1323,25 @@
       });
     }, { threshold: 0 });
     cardObs.observe(voiceCard);
+
+    /* MOBILE: the dock becomes a persistent sticky bar pinned to the top once
+       the visitor scrolls past the first picture (the hero), so the story is
+       always playable/stoppable while reading. It hides only when the hero is
+       back in view. */
+    var hero = document.getElementById('hero');
+    if (hero) {
+      var heroObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!isMobile()) return;
+          if (!e.isIntersecting) {
+            dock.classList.add('is-open');
+          } else {
+            dock.classList.remove('is-open');
+          }
+        });
+      }, { threshold: 0 });
+      heroObs.observe(hero);
+    }
   }
 })();
 </script>
