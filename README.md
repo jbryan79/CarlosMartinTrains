@@ -7,7 +7,7 @@ Live site: [carlos-martin-training.netlify.app](http://carlos-martin-training.ne
 | File | Description |
 |------|-------------|
 | `index.html` | Full website — single page, no dependencies |
-| `carlos-hero.png` | Hero portrait photo (right column, above fold) |
+| `carlos-hero.jpg` | Hero portrait photo (right column, above fold) |
 | `carlos-about.jpg` | Gym photo, edited for definition (About section) |
 | `carlos-story.mp3` | Carlos narrating his story — powers the "In His Own Voice" player |
 
