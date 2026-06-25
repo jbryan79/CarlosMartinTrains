@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Liability waiver and release of claims for Carlos Martin Personal Training & Coaching."/>
+<title>Liability Waiver | Carlos Martin Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --amber: #c8763a;
+    --terra: #a0522d;
+    --cream: #f5f0e6;
+    --warm-white: #fdfaf4;
+    --deep: #1c1208;
+    --mid: #3a2a14;
+    --muted: #7a6a50;
+    --light: #e8dcc8;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--warm-white);
+    color: var(--deep);
+    line-height: 1.6;
+  }
+
+  /* Top bar */
+  .topbar {
+    background: var(--deep);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .topbar .logo {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--amber); letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .topbar .back {
+    color: var(--cream); text-decoration: none;
+    font-size: 0.8rem; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 700;
+  }
+  .topbar .back:hover { color: var(--amber); }
+
+  /* Page */
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--amber);
+    margin-bottom: 0.75rem;
+  }
+  h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    color: var(--mid);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+  }
+  .lead {
+    font-size: 1.05rem;
+    color: var(--mid);
+    margin-bottom: 2.5rem;
+  }
+
+  /* Waiver text block */
+  .waiver-text {
+    background: var(--cream);
+    border-left: 4px solid var(--amber);
+    padding: 1.5rem 1.75rem;
+    border-radius: 4px;
+    margin-bottom: 2.5rem;
+    max-height: 320px;
+    overflow-y: auto;
+    font-size: 0.95rem;
+    color: var(--mid);
+  }
+  .waiver-text h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--deep);
+    margin: 1.25rem 0 0.5rem;
+  }
+  .waiver-text h2:first-child { margin-top: 0; }
+  .waiver-text p { margin-bottom: 0.75rem; }
+
+  /* Form */
+  form { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field label {
+    font-size: 0.75rem; letter-spacing: 0.15em;
+    text-transform: uppercase; font-weight: 700;
+    color: var(--mid);
+  }
+  .field input[type="text"],
+  .field input[type="email"],
+  .field input[type="tel"],
+  .field input[type="date"] {
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    padding: 0.75rem 0.9rem;
+    border: 1.5px solid var(--light);
+    background: var(--warm-white);
+    border-radius: 4px;
+    color: var(--deep);
+    transition: border-color 0.15s;
+  }
+  .field input:focus {
+    outline: none;
+    border-color: var(--amber);
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  @media (max-width: 560px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+
+  /* Signature pad */
+  .sig-wrap { display: flex; flex-direction: column; gap: 0.5rem; }
+  .sig-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .sig-header label {
+    font-size: 0.75rem; letter-spacing: 0.15em;
+    text-transform: uppercase; font-weight: 700;
+    color: var(--mid);
+  }
+  .sig-clear {
+    background: none; border: none; cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.78rem; color: var(--terra);
+    text-decoration: underline; padding: 0;
+  }
+  .sig-clear:hover { color: var(--amber); }
+  .sig-box {
+    border: 1.5px dashed var(--muted);
+    border-radius: 4px;
+    background: var(--warm-white);
+    position: relative;
+    touch-action: none;
+  }
+  .sig-box canvas {
+    display: block;
+    width: 100%;
+    height: 180px;
+    border-radius: 3px;
+  }
+  .sig-hint {
+    position: absolute;
+    inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted);
+    font-style: italic;
+    pointer-events: none;
+    font-size: 0.9rem;
+  }
+  .sig-box.has-ink .sig-hint { display: none; }
+
+  /* Agreement checkbox */
+  .agree {
+    display: flex; gap: 0.75rem; align-items: flex-start;
+    background: var(--cream);
+    padding: 1rem 1.1rem;
+    border-radius: 4px;
+  }
+  .agree input { margin-top: 0.25rem; flex-shrink: 0; transform: scale(1.2); }
+  .agree label {
+    font-size: 0.95rem;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+
+  /* Honeypot */
+  .hp { position: absolute; left: -9999px; }
+
+  /* Submit */
+  .submit {
+    background: var(--amber);
+    color: var(--warm-white);
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-top: 0.5rem;
+  }
+  .submit:hover { background: var(--terra); }
+  .submit:disabled { background: var(--muted); cursor: not-allowed; }
+
+  .error {
+    color: #b3261e;
+    font-size: 0.9rem;
+    margin-top: -0.5rem;
+    display: none;
+  }
+  .error.show { display: block; }
+
+  /* Thank you */
+  .thanks {
+    display: none;
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+  .thanks.show { display: block; }
+  .thanks h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    color: var(--mid);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+  .thanks p { font-size: 1.05rem; color: var(--mid); margin-bottom: 1.5rem; }
+  .thanks a {
+    color: var(--amber); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    font-size: 0.85rem; text-decoration: none;
+  }
+  .thanks a:hover { color: var(--terra); }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="/" class="logo">Carlos Martin</a>
+  <a href="/" class="back">&larr; Back to Site</a>
+</header>
+
+<main class="page">
+  <div id="form-view">
+    <p class="eyebrow">Before Your First Session</p>
+    <h1>Liability Waiver &amp; Release</h1>
+    <p class="lead">Please read carefully, fill out your information, and sign below. A copy of your submission will be kept on file.</p>
+
+    <!-- PLACEHOLDER WAIVER TEXT — replace with Carlos's actual lawyer-reviewed waiver before relying on this for legal protection. -->
+    <div class="waiver-text">
+      <h2>Assumption of Risk</h2>
+      <p>I understand that participation in personal training, strength and conditioning, and related fitness activities involves inherent risks, including but not limited to muscle strains, sprains, fractures, cardiovascular events, and in rare cases, serious injury or death. I voluntarily assume all such risks.</p>
+
+      <h2>Release of Liability</h2>
+      <p>In consideration of being permitted to participate in training sessions and activities provided by Carlos Martin ("Trainer"), I, the undersigned, hereby release, waive, and discharge the Trainer from any and all claims, demands, actions, or causes of action arising out of or related to any loss, damage, or injury sustained while participating in any training session or activity, whether caused by negligence or otherwise, to the fullest extent permitted by law.</p>
+
+      <h2>Medical Representation</h2>
+      <p>I represent that I am in good physical condition and have no medical condition or disability that would prevent me from participating safely. I agree to inform the Trainer of any condition, injury, medication, or limitation that may affect my participation. I have been advised to consult a physician before beginning any exercise program.</p>
+
+      <h2>Acknowledgment</h2>
+      <p>I have read this waiver in full, understand its terms, and sign it freely and voluntarily. I am at least 18 years of age (or have a parent/guardian co-signing). I understand this is a legal document and that by signing electronically below I intend to be legally bound by its terms.</p>
+    </div>
+
+    <form name="waiver" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="waiver-form">
+      <input type="hidden" name="form-name" value="waiver"/>
+      <p class="hp"><label>Don't fill this out: <input name="bot-field"/></label></p>
+
+      <div class="field">
+        <label for="full-name">Full Legal Name</label>
+        <input type="text" id="full-name" name="full-name" required autocomplete="name"/>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="date-of-birth" required/>
+        </div>
+        <div class="field">
+          <label for="signed-date">Date Signed</label>
+          <input type="date" id="signed-date" name="date-signed" required readonly/>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email"/>
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" required autocomplete="tel"/>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="ec-name">Emergency Contact Name</label>
+          <input type="text" id="ec-name" name="emergency-contact-name" required/>
+        </div>
+        <div class="field">
+          <label for="ec-phone">Emergency Contact Phone</label>
+          <input type="tel" id="ec-phone" name="emergency-contact-phone" required/>
+        </div>
+      </div>
+
+      <div class="sig-wrap">
+        <div class="sig-header">
+          <label>Signature</label>
+          <button type="button" class="sig-clear" id="sig-clear">Clear</button>
+        </div>
+        <div class="sig-box" id="sig-box">
+          <canvas id="sig-canvas"></canvas>
+          <span class="sig-hint">Sign here with your finger or mouse</span>
+        </div>
+      </div>
+
+      <input type="hidden" name="signature" id="signature-data"/>
+
+      <div class="agree">
+        <input type="checkbox" id="agree-check" name="agreement" value="agreed" required/>
+        <label for="agree-check">I have read this waiver in full, I understand it, and I agree to its terms. I am signing voluntarily.</label>
+      </div>
+
+      <p class="error" id="error-msg"></p>
+
+      <button type="submit" class="submit" id="submit-btn">Submit Waiver</button>
+    </form>
+  </div>
+
+  <div class="thanks" id="thanks-view">
+    <h2>Thank You</h2>
+    <p>Your waiver has been received. Carlos will be in touch shortly to schedule your first session.</p>
+    <a href="/">&larr; Back to Home</a>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@5.0.4/dist/signature_pad.umd.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var canvas = document.getElementById('sig-canvas');
+  var box = document.getElementById('sig-box');
+  var clearBtn = document.getElementById('sig-clear');
+  var form = document.getElementById('waiver-form');
+  var errorMsg = document.getElementById('error-msg');
+  var submitBtn = document.getElementById('submit-btn');
+  var signatureField = document.getElementById('signature-data');
+  var formView = document.getElementById('form-view');
+  var thanksView = document.getElementById('thanks-view');
+
+  // Default the signed-date field to today.
+  var today = new Date().toISOString().slice(0, 10);
+  document.getElementById('signed-date').value = today;
+
+  // Match canvas backing store to its CSS size, accounting for DPR so the
+  // signature stays crisp on high-DPI screens.
+  function resizeCanvas() {
+    var ratio = Math.max(window.devicePixelRatio || 1, 1);
+    canvas.width = canvas.offsetWidth * ratio;
+    canvas.height = canvas.offsetHeight * ratio;
+    canvas.getContext('2d').scale(ratio, ratio);
+    signaturePad.clear();
+    box.classList.remove('has-ink');
+  }
+
+  var signaturePad = new SignaturePad(canvas, {
+    penColor: '#1c1208',
+    backgroundColor: 'rgba(0,0,0,0)'
+  });
+
+  signaturePad.addEventListener('beginStroke', function () {
+    box.classList.add('has-ink');
+  });
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  clearBtn.addEventListener('click', function () {
+    signaturePad.clear();
+    box.classList.remove('has-ink');
+  });
+
+  function showError(msg) {
+    errorMsg.textContent = msg;
+    errorMsg.classList.add('show');
+  }
+  function clearError() {
+    errorMsg.classList.remove('show');
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    clearError();
+
+    if (signaturePad.isEmpty()) {
+      showError('Please sign in the box above before submitting.');
+      return;
+    }
+
+    signatureField.value = signaturePad.toDataURL('image/png');
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    var formData = new FormData(form);
+    var body = new URLSearchParams(formData).toString();
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body
+    }).then(function (res) {
+      if (!res.ok) throw new Error('Submission failed (' + res.status + ')');
+      formView.style.display = 'none';
+      thanksView.classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }).catch(function (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Waiver';
+      showError('Sorry — something went wrong submitting. Please try again, or email carlos_martin21@yahoo.com.');
+      console.error(err);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
